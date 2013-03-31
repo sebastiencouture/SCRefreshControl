@@ -42,6 +42,12 @@ SCRefreshControl *refresh = [[SCRefreshControl alloc] init];
 [scrollView addSubview:refresh];
 ```
 
-## LICENSE
+## How to Use
+
+1. Copy SCRefreshControl folder into your project
+2. Link against the QuartzCore framework
+3. Either extend SCRefreshViewController or SCRefreshTableViewController and follow example usage, or add the control to any UIScrollView as in the example usage. See the demo project for further details and how to customize the appearance.
+
+## License
 
 SCRefreshControl, and all the accompanying source code, is released under the MIT license
