@@ -37,13 +37,13 @@
 // indicator
 @property (strong, nonatomic) UIColor *tintColor UI_APPEARANCE_SELECTOR; // Default is dark gray
 
-// Title to display for the last update date.
-@property (strong, nonatomic) NSString *lastUpdateTitle UI_APPEARANCE_SELECTOR;
-
 // Titles displayed for various states. The default values are not localized.
-@property (strong, nonatomic) NSString *refreshingTitle UI_APPEARANCE_SELECTOR; // "Pull down to update..."
+@property (strong, nonatomic) NSString *refreshingTitle UI_APPEARANCE_SELECTOR; // "Updating..."
 @property (strong, nonatomic) NSString *releaseToRefreshTitle UI_APPEARANCE_SELECTOR; // "Release to update..."
-@property (strong, nonatomic) NSString *pullToRefreshTitle UI_APPEARANCE_SELECTOR; // "Updating..."
+@property (strong, nonatomic) NSString *pullToRefreshTitle UI_APPEARANCE_SELECTOR; // "Pull down to update..."
+
+// Title to display for the last update date.
+@property (strong, nonatomic) NSString *lastUpdateTitle;
 
 // Tells the control that a refresh operation was started programmatically. Call
 // this method when an external event triggers the refresh instead of user

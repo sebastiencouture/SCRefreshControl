@@ -33,6 +33,10 @@
 
 #define ANIMATE_TIME_SEC 0.25
 
+#define DEFAULT_REFRESHING_TITLE @"Updating..."
+#define DEFAULT_RELEASE_TO_REFRESH_TITLE @"Release to update..."
+#define DEFAULT_PULL_TO_REFRESH_TITLE @"Pull down to update..."
+
 @interface SCRefreshControl ()
 
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicator;
@@ -40,6 +44,8 @@
 
 @property (strong, nonatomic) UILabel *statusLabel;
 @property (strong, nonatomic) UILabel *lastUpdateLabel;
+
+@property (strong, nonatomic) UIColor *defaultTintColor;
 
 @property (nonatomic) CGFloat originalContentInsetTop;
 
@@ -51,7 +57,7 @@
 - (void)positionAboveScrollContent;
 
 - (void)createSubviews;
-- (void)initDefaultStyle;
+- (void)initAppearance;
 
 - (UIScrollView *)scrollView;
 - (BOOL)isSuperviewScrollView;
@@ -75,6 +81,8 @@
 @synthesize statusLabel = _statusLabel;
 @synthesize lastUpdateLabel = _lastUpdateLabel;
 
+@synthesize defaultTintColor = _defaultTintColor;
+
 @synthesize  originalContentInsetTop = _originalContentInsetTop;
 
 - (id)init
@@ -89,7 +97,7 @@
         self.autoresizingMask =  UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
         
         [self createSubviews];
-        [self initDefaultStyle];
+        [self initAppearance];
         
         [self updateForPullToRefresh];
     }
@@ -173,12 +181,47 @@
 
 - (void)setTintColor:(UIColor *)tintColor
 {
+    if (!tintColor)
+    {
+        tintColor = self.defaultTintColor;
+    }
+    
     _tintColor = tintColor;
     
     self.statusLabel.textColor = tintColor;
     self.lastUpdateLabel.textColor = tintColor;
     self.activityIndicator.color = tintColor;
     self.arrow.tintColor = tintColor;
+}
+
+- (void)setPullToRefreshTitle:(NSString *)pullToRefreshTitle
+{
+    if (!pullToRefreshTitle)
+    {
+        pullToRefreshTitle = DEFAULT_PULL_TO_REFRESH_TITLE;
+    }
+    
+    _pullToRefreshTitle = pullToRefreshTitle;
+}
+
+- (void)setReleaseToRefreshTitle:(NSString *)releaseToRefreshTitle
+{
+    if (!releaseToRefreshTitle)
+    {
+        releaseToRefreshTitle = DEFAULT_RELEASE_TO_REFRESH_TITLE;
+    }
+    
+    _releaseToRefreshTitle = releaseToRefreshTitle;
+}
+
+- (void)setRefreshingTitle:(NSString *)refreshingTitle
+{
+    if (!refreshingTitle)
+    {
+        refreshingTitle = DEFAULT_REFRESHING_TITLE;
+    }
+    
+    _refreshingTitle = refreshingTitle;
 }
 
 - (void)setLastUpdateTitle:(NSString *)lastUpdateTitle
@@ -340,20 +383,21 @@
     [self addSubview:self.self.activityIndicator];
 }
 
-- (void)initDefaultStyle
+- (void)initAppearance
 {
     self.backgroundColor = [UIColor clearColor];
     
-    _tintColor = [UIColor grayColor];
+    self.defaultTintColor = [UIColor grayColor];
+    _tintColor = self.defaultTintColor;
     
     self.statusLabel.textColor = _tintColor;
     self.lastUpdateLabel.textColor = _tintColor;
     self.activityIndicator.color = _tintColor;
     self.arrow.tintColor = _tintColor;
     
-    _pullToRefreshTitle = @"Pull down to update...";
-    _releaseToRefreshTitle = @"Release to update...";
-    _refreshingTitle = @"Updating...";
+    _pullToRefreshTitle = DEFAULT_PULL_TO_REFRESH_TITLE;
+    _releaseToRefreshTitle = DEFAULT_RELEASE_TO_REFRESH_TITLE;
+    _refreshingTitle = DEFAULT_REFRESHING_TITLE;
 }
 
 - (UIScrollView *)scrollView

@@ -58,13 +58,19 @@
 
 - (void)setTintColor:(UIColor *)tintColor
 {
+    // TODO: this check doesn't work if in different color model but same color
+    if( [_tintColor isEqual:tintColor] )
+    {
+        return;
+    }
+    
     _tintColor = tintColor;
     
     // http://stackoverflow.com/questions/3514066/how-to-tint-a-transparent-png-image-in-iphone
     UIGraphicsBeginImageContextWithOptions(self.original.size, NO, 0);
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    CGRect rect = self.frame;
+    CGRect rect = CGRectMake(0, 0, self.original.size.width, self.original.size.height);
     
     // draw tint color
     CGContextSetBlendMode(context, kCGBlendModeNormal);
@@ -75,8 +81,11 @@
     CGContextSetBlendMode(context, kCGBlendModeDestinationIn);
     CGContextDrawImage(context, rect, self.original.CGImage);
     
+    self.image = self.original;
     self.image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
+    
+    [self setNeedsDisplay];
 }
 
 - (void)showDown

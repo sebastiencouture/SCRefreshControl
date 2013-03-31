@@ -39,9 +39,9 @@
     // Demo of appearance customization
     [[SCRefreshControl appearanceWhenContainedIn:[DemoAppearanceViewController class], nil] setTintColor:[UIColor redColor]];
     
-    [[SCRefreshControl appearanceWhenContainedIn:[DemoAppearanceViewController class], nil]setPullToRefreshTitle:@"Appearance customized pull to update!"];
-    [[SCRefreshControl appearanceWhenContainedIn:[DemoAppearanceViewController class], nil]setReleaseToRefreshTitle:@"Appearance customized release to update!"];
-    [[SCRefreshControl appearanceWhenContainedIn:[DemoAppearanceViewController class], nil]setRefreshingTitle:@"Appearance customized updating!"];
+    [[SCRefreshControl appearanceWhenContainedIn:[DemoAppearanceViewController class], nil]setPullToRefreshTitle:@"Customized pull"];
+    [[SCRefreshControl appearanceWhenContainedIn:[DemoAppearanceViewController class], nil]setReleaseToRefreshTitle:@"Customized release"];
+    [[SCRefreshControl appearanceWhenContainedIn:[DemoAppearanceViewController class], nil]setRefreshingTitle:@"Customized updating"];
     
     return YES;
 }
