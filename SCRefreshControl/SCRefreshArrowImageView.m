@@ -81,7 +81,6 @@
     CGContextSetBlendMode(context, kCGBlendModeDestinationIn);
     CGContextDrawImage(context, rect, self.original.CGImage);
     
-    self.image = self.original;
     self.image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
