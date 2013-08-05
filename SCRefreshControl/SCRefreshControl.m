@@ -130,7 +130,7 @@
         CGRectMake(activityX, activityY, activityWidth, activityHeight);
     
     CGFloat textX = arrowX + arrowWidth + 10;
-    CGFloat textY = CGRectGetMinY(self.bounds) + 15;
+    CGFloat textY = CGRectGetMinY(self.bounds) + 20;
     
     CGFloat textWidth = CGRectGetWidth(self.bounds) - (textX * 2.0);
     CGFloat textHeight = 20;
